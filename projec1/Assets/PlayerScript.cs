@@ -12,13 +12,15 @@ public class PlayerScript : MonoBehaviour
     private float movementX;
     private float movementY;
     // public float jumpsleft; // if want to implement double jump
-    // public bool dashleft; // if want to implement dashing
+    private float dashleft; // if want to implement dashing
+    private float dashmultiplier;
     // private int maxdownspeed = 5; // max downspeed for the ground pound
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+        dashleft = 1;
     }
 
     void OnMove(InputValue movementValue){
@@ -33,16 +35,25 @@ public class PlayerScript : MonoBehaviour
     Vector3 horizontalmovement = new Vector3(movementX,0);
     Vector4 verticalmovement = new Vector4(0,movementY);
 
-    rb.AddForce(horizontalmovement * speed * 10);
+    rb.AddForce(horizontalmovement * speed * 10 * dashmultiplier);
 
-    
+    // lower dash multiplier by 0.01 every frame until its 1
+    if (dashmultiplier > 1){
+        dashmultiplier -= 0.01;
+    }
+
     }
 
     void Update(){
+        if (IsGrounded()){
+            dashleft = 1;
+        }
          if (Input.GetKeyDown(KeyCode.W)) { // Now checking for the "W" key
         Jump();
     }
-
+        if (Input.GetKeyDown(KeyCode.LeftShift)) { // Now checking for the "Left shift" key
+        Dash();
+    }
     }
 
 
@@ -58,7 +69,15 @@ public class PlayerScript : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
     }
-
+    
+    void Dash(){
+        if(dashleft > 0){
+            //set horizontal speed to 1.5x the speed variable
+            dashmultiplier = 1.5;
+            //every frame put it down by 0.01x 
+            //until its back at normal speed
+        }
+    }
   
 }
 
