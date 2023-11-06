@@ -16,7 +16,11 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         // find player x value
+        float playerx = player.transform.position.x;
         //if less than 10 dont move
         // otherwise follow the player
+        if (playerx > -5) {
+            this.transform.position = new Vector3(playerx + 5, 0, -10);
+        }
     }
 }
