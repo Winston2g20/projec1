@@ -7,18 +7,24 @@ public class PlayerScript : MonoBehaviour
 {
     Rigidbody2D rb;
     BoxCollider2D collider;
+    SpriteRenderer sr;
     public float speed;
     public float jumpForce;
     private float movementX;
     private float movementY;
     // public float jumpsleft; // if want to implement double jump
-    // public bool dashleft; // if want to implement dashing
+    private int dashleft; // if want to implement dashing
+    private float dashmultiplier = 1;
+    private float theforce;
+    private bool gravflipped = false;
     // private int maxdownspeed = 5; // max downspeed for the ground pound
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+        sr = GetComponent<SpriteRenderer>();
+        dashleft = 1;
     }
 
     void OnMove(InputValue movementValue){
@@ -33,16 +39,39 @@ public class PlayerScript : MonoBehaviour
     Vector3 horizontalmovement = new Vector3(movementX,0);
     Vector4 verticalmovement = new Vector4(0,movementY);
 
-    rb.AddForce(horizontalmovement * speed * 10);
+    theforce = movementX * speed * 10 * dashmultiplier;
 
-    
+    rb.AddForce(horizontalmovement * speed * 10 * dashmultiplier);
+
+    if (movementX < 0){
+        sr.flipX = true;
+    }
+    if (movementX > 0){
+        sr.flipX = false;
+    }
+
+    // lower dash multiplier by 0.01 every frame until its 1
+    if (dashmultiplier > 1f){
+        dashmultiplier -= 0.02f;
+    }
+
     }
 
     void Update(){
+        if (IsGrounded()){
+            dashleft = 1;
+        }
          if (Input.GetKeyDown(KeyCode.W)) { // Now checking for the "W" key
         Jump();
     }
-
+        if (Input.GetKeyDown(KeyCode.LeftShift)) { // Now checking for the "Left shift" key
+        Dash();
+        Debug.Log("Dash Triggered");
+        Debug.Log(theforce);
+    }
+        if (Input.GetKeyDown(KeyCode.Space)){
+            FlipGravity();
+        }
     }
 
 
@@ -50,7 +79,7 @@ public class PlayerScript : MonoBehaviour
     bool IsGrounded() {
     LayerMask layerMask = LayerMask.GetMask("Ground"); 
     Vector2 raycastOrigin = new Vector2(transform.position.x, transform.position.y - 0.3f);
-    RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.down, 0.3f, layerMask); 
+    RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.down, 0.5f, layerMask); 
     return hit.collider != null;}
 
     void Jump(){
@@ -58,8 +87,24 @@ public class PlayerScript : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
     }
+    
+    void Dash(){
+        if(dashleft > 0){
+            //set horizontal speed to 1.5x the speed variable
+            dashmultiplier = 2f;
+            dashleft -= 1; 
+            //every frame put it down by 0.01x 
+            //until its back at normal speed
+        }
+    }
 
+    void FlipGravity(){
+        Physics2D.gravity = -Physics2D.gravity;
+        Debug.Log("Gravity Inverted");
+        gravflipped = !gravflipped;
+        sr.flipY = gravflipped;
+        }
+    }
   
-}
 
 
