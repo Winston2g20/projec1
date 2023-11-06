@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     private float movementY;
     // public float jumpsleft; // if want to implement double jump
     private int dashleft; // if want to implement dashing
-    private float dashmultiplier;
+    private float dashmultiplier = 1;
     // private int maxdownspeed = 5; // max downspeed for the ground pound
     // Start is called before the first frame update
     void Start()
@@ -45,6 +45,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     void Update(){
+        Debug.Log("Grounded: " + IsGrounded());
         if (IsGrounded()){
             dashleft = 1;
         }
@@ -74,6 +75,7 @@ public class PlayerScript : MonoBehaviour
         if(dashleft > 0){
             //set horizontal speed to 1.5x the speed variable
             dashmultiplier = 1.5f;
+            dashleft -= 1; 
             //every frame put it down by 0.01x 
             //until its back at normal speed
         }
