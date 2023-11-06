@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
     private float movementX;
     private float movementY;
     // public float jumpsleft; // if want to implement double jump
-    private float dashleft; // if want to implement dashing
+    private int dashleft; // if want to implement dashing
     private float dashmultiplier;
     // private int maxdownspeed = 5; // max downspeed for the ground pound
     // Start is called before the first frame update
@@ -38,8 +38,8 @@ public class PlayerScript : MonoBehaviour
     rb.AddForce(horizontalmovement * speed * 10 * dashmultiplier);
 
     // lower dash multiplier by 0.01 every frame until its 1
-    if (dashmultiplier > 1){
-        dashmultiplier -= 0.01;
+    if (dashmultiplier > 1f){
+        dashmultiplier -= 0.01f;
     }
 
     }
@@ -73,7 +73,7 @@ public class PlayerScript : MonoBehaviour
     void Dash(){
         if(dashleft > 0){
             //set horizontal speed to 1.5x the speed variable
-            dashmultiplier = 1.5;
+            dashmultiplier = 1.5f;
             //every frame put it down by 0.01x 
             //until its back at normal speed
         }
