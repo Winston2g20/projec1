@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     private float movementY;
     // public float jumpsleft; // if want to implement double jump
     private int dashleft; // if want to implement dashing
-    private float dashmultiplier = 1;
+    private float dashmultiplier = 5;
     private float theforce;
     private bool gravflipped = false;
     // private int maxdownspeed = 5; // max downspeed for the ground pound
@@ -90,6 +90,7 @@ public class PlayerScript : MonoBehaviour
     
     void Dash(){
         if(dashleft > 0){
+            Debug.Log("Dash executed");
             //set horizontal speed to 1.5x the speed variable
             dashmultiplier = 2f;
             dashleft -= 1; 
@@ -100,7 +101,6 @@ public class PlayerScript : MonoBehaviour
 
     void FlipGravity(){
         Physics2D.gravity = -Physics2D.gravity;
-        Debug.Log("Gravity Inverted");
         gravflipped = !gravflipped;
         sr.flipY = gravflipped;
         }
