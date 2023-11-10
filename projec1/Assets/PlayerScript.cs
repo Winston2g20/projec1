@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     private float movementY;
     // public float jumpsleft; // if want to implement double jump
     private int dashleft; // if want to implement dashing
-    private float dashmultiplier = 5;
+    private float dashmultiplier = 1;
     private float theforce;
     private bool gravflipped = false;
     // private int maxdownspeed = 5; // max downspeed for the ground pound
@@ -104,7 +104,23 @@ public class PlayerScript : MonoBehaviour
         gravflipped = !gravflipped;
         sr.flipY = gravflipped;
         }
+    
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        int layer = collision.gameObject.layer;
+        string layerName = LayerMask.LayerToName(layer);
+        Debug.Log("Collided with object on layer: " + layerName);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Hazard"))
+        {
+            Die();
+        }
     }
-  
+
+    void Die()
+    {
+       Destroy(gameObject);
+    }
+}
 
 
