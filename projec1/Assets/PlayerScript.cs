@@ -94,6 +94,7 @@ public class PlayerScript : MonoBehaviour
     
     void Dash(){
         if(dashleft > 0){
+            Debug.Log("Dash executed");
             //set horizontal speed to 1.5x the speed variable
             dashmultiplier = 2f;
             dashleft -= 1; 
@@ -104,11 +105,26 @@ public class PlayerScript : MonoBehaviour
 
     void FlipGravity(){
         Physics2D.gravity = -Physics2D.gravity;
-        Debug.Log("Gravity Inverted");
         gravflipped = !gravflipped;
         sr.flipY = gravflipped;
         }
+    
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        int layer = collision.gameObject.layer;
+        string layerName = LayerMask.LayerToName(layer);
+        Debug.Log("Collided with object on layer: " + layerName);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Hazard"))
+        {
+            Die();
+        }
     }
-  
+
+    void Die()
+    {
+       Destroy(gameObject);
+    }
+}
 
 
