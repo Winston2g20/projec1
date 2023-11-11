@@ -52,6 +52,10 @@ public class PlayerScript : MonoBehaviour
         sr.flipX = false;
     }
 
+    if (movementX == 0 && movementY == 0 && IsGrounded()){
+        rb.velocity = new Vector3(0,0);
+    }
+
     // lower dash multiplier by 0.01 every frame until its 1
     if (dashmultiplier > 1f){
         dashmultiplier -= 0.02f;
