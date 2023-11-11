@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D collider;
     SpriteRenderer sr;
-    AudioSource asource;
     public float speed;
     public float jumpForce;
     private float movementX;
