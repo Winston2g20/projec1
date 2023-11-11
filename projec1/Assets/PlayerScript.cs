@@ -68,6 +68,9 @@ public class PlayerScript : MonoBehaviour
          if (Input.GetKeyDown(KeyCode.W)) { // Now checking for the "W" key
         Jump();
     }
+        if (Input.GetKeyDown(KeyCode.S)) { // Now checking for the "W" key
+        RevJump();
+    }
         if (Input.GetKeyDown(KeyCode.LeftShift)) { // Now checking for the "Left shift" key
         Dash();
         Debug.Log("Dash Triggered");
@@ -89,6 +92,11 @@ public class PlayerScript : MonoBehaviour
     void Jump(){
     if (IsGrounded()) {
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+    }
+    void RevJump(){
+    if (IsGrounded()) {
+        GetComponent<Rigidbody2D>().AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
     }
     }
     
