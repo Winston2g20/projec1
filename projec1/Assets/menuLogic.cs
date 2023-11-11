@@ -13,12 +13,12 @@ public class menuLogic : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
     public void selectLevel2(){
-        SceneManager.LoadScene("Level 2");
+        SceneManager.LoadScene("Level2");
     }
     public void selectLevel3(){
-        SceneManager.LoadScene("Level 3");
+        SceneManager.LoadScene("Level3");
     }
     public void selectLevel4(){
-        SceneManager.LoadScene("Level 4");
+        SceneManager.LoadScene("Level4");
     }
 }
