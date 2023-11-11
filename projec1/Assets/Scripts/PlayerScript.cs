@@ -17,6 +17,10 @@ public class PlayerScript : MonoBehaviour
     private float dashmultiplier = 1;
     private float theforce;
     private bool gravflipped = false;
+    public AudioSource jumpSoundEffect;
+    public AudioSource deathSoundEffect;
+    public AudioSource coinCollectSoundEffect;
+
     [HideInInspector]
     public bool dead = false;
     // private int maxdownspeed = 5; // max downspeed for the ground pound
@@ -90,9 +94,14 @@ public class PlayerScript : MonoBehaviour
 
     void Jump(){
     if (IsGrounded()) {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        jumpSoundEffect.Play();
+        if(Physics2D.gravity.y < 0){
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);}
+        else{
+             GetComponent<Rigidbody2D>().AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);}
+        }
     }
-    }
+    
     
     void Dash(){
         if(dashleft > 0){
@@ -130,6 +139,7 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
         {
             CollectCoin();
+            coinCollectSoundEffect.Play();
             Destroy(other.gameObject);
         }
 
@@ -142,7 +152,9 @@ public class PlayerScript : MonoBehaviour
 
     void Die()
     {
+       deathSoundEffect.Play();
        dead = true;
+       GameControllerScript.Instance.Die();
        gameObject.SetActive(false);
     }
 

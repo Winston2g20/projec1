@@ -7,6 +7,8 @@ public class GameControllerScript : MonoBehaviour
     GameObject player;
     GameObject deathScreen;
     GameObject victoryScreen;
+    public AudioSource deathSoundEffect;
+    public AudioSource buttonClickSFX;
 
 
         // Singleton pattern
@@ -46,9 +48,12 @@ public class GameControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     if(player.GetComponent<PlayerScript>().dead == true){
+      
+    }
+
+    public void Die(){
+        deathSoundEffect.Play();
         deathScreen.SetActive(true);
-     }   
     }
 
     public void ReloadScene(){
@@ -65,5 +70,9 @@ public class GameControllerScript : MonoBehaviour
 
     public void Finish(){
         deathScreen.SetActive(true);
+    }
+
+    public void playButtonSFX(){
+        buttonClickSFX.Play();
     }
 }
