@@ -16,6 +16,7 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         // find player x value
+        if (player){
         float playerx = player.transform.position.x;
         float playery = player.transform.position.y;
         //if less than 10 dont move
@@ -28,6 +29,6 @@ public class CameraScript : MonoBehaviour
         }
         else if (playery > 0) {
             this.transform.position = new Vector3(0, playery, -10);
-        }
+        }}
     }
 }
