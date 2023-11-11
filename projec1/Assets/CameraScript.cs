@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CameraScript : MonoBehaviour
 {
 
     Transform player;
-    float currentTime;
-    public TextMeshPro currentTimeText;
-    // Start is called before the first frame update
+    
     void Start()
     {
         player = GameObject.Find("Player").transform;
-        currentTime = 0f;
     }
 
     // Update is called once per frame
@@ -34,6 +32,5 @@ public class CameraScript : MonoBehaviour
         else if (playery > 0) {
             this.transform.position = new Vector3(0, playery, -10);
         }}
-        currentTimeText.text = currentTime.ToString();
     }
 }
