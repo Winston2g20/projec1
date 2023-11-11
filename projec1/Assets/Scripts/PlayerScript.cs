@@ -17,6 +17,8 @@ public class PlayerScript : MonoBehaviour
     private float dashmultiplier = 1;
     private float theforce;
     private bool gravflipped = false;
+    [HideInInspector]
+    public bool dead = false;
     // private int maxdownspeed = 5; // max downspeed for the ground pound
     // Start is called before the first frame update
     void Start()
@@ -123,7 +125,9 @@ public class PlayerScript : MonoBehaviour
 
     void Die()
     {
-       Destroy(gameObject);
+       dead = true;
+       gameObject.SetActive(false);
+       
     }
 }
 
