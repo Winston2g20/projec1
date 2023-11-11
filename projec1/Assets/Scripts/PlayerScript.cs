@@ -116,10 +116,27 @@ public class PlayerScript : MonoBehaviour
     {
         int layer = collision.gameObject.layer;
         string layerName = LayerMask.LayerToName(layer);
-        Debug.Log("Collided with object on layer: " + layerName);
+        
         if (collision.gameObject.layer == LayerMask.NameToLayer("Hazard"))
         {
             Die();
+        }
+
+      
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
+        {
+            CollectCoin();
+            Destroy(other.gameObject);
+        }
+
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Finish"))
+        {
+            Finish();
         }
     }
 
@@ -127,7 +144,14 @@ public class PlayerScript : MonoBehaviour
     {
        dead = true;
        gameObject.SetActive(false);
-       
+    }
+
+    void CollectCoin(){
+        GameControllerScript.Instance.CollectCoin();
+    }
+
+    void Finish(){
+        GameControllerScript.Instance.Finish();
     }
 }
 
