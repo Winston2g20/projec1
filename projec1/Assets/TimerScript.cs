@@ -20,4 +20,7 @@ public class TimerScript : MonoBehaviour
     {
         tmp.text = timerfloat.ToString();
     }
+    void FixedUpdate(){
+        
+    }
 }

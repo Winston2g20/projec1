@@ -54,7 +54,7 @@ public class PlayerScript : MonoBehaviour
         rb.velocity = new Vector3(0,0);
     }
 
-    // lower dash multiplier by 0.01 every frame until its 1
+    // lower dash multiplier by 0.02 every frame until its 1
     if (dashmultiplier > 1f){
         dashmultiplier -= 0.02f;
     }
@@ -68,7 +68,7 @@ public class PlayerScript : MonoBehaviour
          if (Input.GetKeyDown(KeyCode.W)) { // Now checking for the "W" key
         Jump();
     }
-        if (Input.GetKeyDown(KeyCode.S)) { // Now checking for the "W" key
+        if (Input.GetKeyDown(KeyCode.S)) { // Now checking for the "S" key
         RevJump();
     }
         if (Input.GetKeyDown(KeyCode.LeftShift)) { // Now checking for the "Left shift" key
@@ -89,13 +89,19 @@ public class PlayerScript : MonoBehaviour
     RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.down, 0.5f, layerMask); 
     return hit.collider != null;}
 
+    bool IsRevGrounded() {
+    LayerMask layerMask = LayerMask.GetMask("Ground"); 
+    Vector2 raycastOrigin = new Vector2(transform.position.x, transform.position.y + 0.3f);
+    RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.up, 0.5f, layerMask); 
+    return hit.collider != null;}
+
     void Jump(){
     if (IsGrounded()) {
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
     }
     void RevJump(){
-    if (IsGrounded()) {
+    if (IsRevGrounded()) {
         GetComponent<Rigidbody2D>().AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
     }
     }
