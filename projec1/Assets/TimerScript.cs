@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class TimerScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class TimerScript : MonoBehaviour
     float timerfloat = 0f;
     TMPro.TextMeshProUGUI tmp;
     GameObject textobj;
+    string textstring;
     void Start()
     {
         textobj = this.gameObject;
@@ -18,9 +20,13 @@ public class TimerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tmp.text = timerfloat.ToString();
+        
     }
     void FixedUpdate(){
-        
+        timerfloat = timerfloat + 0.02f;
+        // Debug.Log("timerfloat " + timerfloat.ToString());
+        TimeSpan ts = TimeSpan.FromSeconds(timerfloat);
+        textstring = ts.ToString("m\\:ss\\.ff");
+        tmp.text = textstring;
     }
 }
