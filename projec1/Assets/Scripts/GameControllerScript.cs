@@ -13,11 +13,12 @@ public class GameControllerScript : MonoBehaviour
     public AudioSource deathSoundEffect;
     public AudioSource buttonClickSFX;
     public GameObject camera;
-    public CameraScript cameraScript;
-    public TextMeshProUGUI coinCount;
-    public TextMeshProUGUI totalCoinCount;
     public int totalCoinCounter = 0;
-    private int coinCounter = 0;
+    
+    [HideInInspector] public CameraScript cameraScript;
+    [HideInInspector] public TextMeshProUGUI coinCount;
+    [HideInInspector] public TextMeshProUGUI totalCoinCount;
+    [HideInInspector] private int coinCounter = 0;
 
 
         // Singleton pattern
