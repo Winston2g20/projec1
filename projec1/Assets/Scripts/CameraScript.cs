@@ -8,6 +8,10 @@ public class CameraScript : MonoBehaviour
 {
 
     Transform player;
+    public float margin = 4;
+    public float marginy = 2;
+    public float smoothSpeed = 5f;
+    public float yoffset = 0;
     
     void Start()
     {
@@ -21,16 +25,36 @@ public class CameraScript : MonoBehaviour
         if (player){
         float playerx = player.transform.position.x;
         float playery = player.transform.position.y;
+        float camerax = transform.position.x;
+        float cameray = transform.position.y;
+        
         //if less than 10 dont move
         // otherwise follow the player
-        if (playerx > -5 && playery > 0){
-            this.transform.position = new Vector3(playerx + 5, playery, -10);
+        Vector3 targetPosition = new Vector3(playerx + margin, playery + yoffset, -10);
+
+        if (camerax -  playerx < margin){
+            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
         }
-        else if (playerx > -5) {
-            this.transform.position = new Vector3(playerx + 5, 0, -10);
+        if (camerax - playerx > -margin) {
+            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
         }
-        else if (playery > 0) {
-            this.transform.position = new Vector3(0, playery, -10);
-        }}
+        if (cameray - playery < margin) {
+            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+
+        }
+        if (cameray - playery > -margin) {
+            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+
+        }
+
+        
+       
+        
+        }
     }
+
+    public void FlipGravity(){
+
+            yoffset = -yoffset;
+            marginy = -marginy;}
 }
