@@ -6030,12 +6030,24 @@ PrefabInstance:
       propertyPath: totalCoinCounter
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6762401795317074763, guid: f9a38dae5d6f2114e95f1e99b7c5cb12, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e8351ffffec29c64ab4988d71df3f528, type: 3}
     - target: {fileID: 6762401795317074764, guid: f9a38dae5d6f2114e95f1e99b7c5cb12, type: 3}
       propertyPath: m_Name
       value: Game Controller
       objectReference: {fileID: 0}
     - target: {fileID: 6762401795317074764, guid: f9a38dae5d6f2114e95f1e99b7c5cb12, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762401795587961971, guid: f9a38dae5d6f2114e95f1e99b7c5cb12, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762401795797073181, guid: f9a38dae5d6f2114e95f1e99b7c5cb12, type: 3}
+      propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7421,6 +7433,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GravityBlock (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2254880692936827778, guid: 7e659a996f3f7334f9a11ac5699c94e0, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1136518
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254880692936827778, guid: 7e659a996f3f7334f9a11ac5699c94e0, type: 3}
+      propertyPath: m_Size.y
+      value: 1.173732
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254880692936827778, guid: 7e659a996f3f7334f9a11ac5699c94e0, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.028412342
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254880692936827778, guid: 7e659a996f3f7334f9a11ac5699c94e0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2254880692936827779, guid: 7e659a996f3f7334f9a11ac5699c94e0, type: 3}
       propertyPath: m_Mass
       value: 50
@@ -7668,6 +7696,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6969712780809652563, guid: 01453b8538b0e4e40bd81b0ce81bbb24, type: 3}
+      propertyPath: marginy
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969712780809652563, guid: 01453b8538b0e4e40bd81b0ce81bbb24, type: 3}
+      propertyPath: yoffset
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7382876704636487801, guid: 01453b8538b0e4e40bd81b0ce81bbb24, type: 3}
       propertyPath: m_Name
       value: Game Camera

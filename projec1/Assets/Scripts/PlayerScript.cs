@@ -177,6 +177,7 @@ public class PlayerScript : MonoBehaviour
 
     void Finish(){
         GameControllerScript.Instance.Finish();
+        gameObject.SetActive(false);
     }
 }
 
