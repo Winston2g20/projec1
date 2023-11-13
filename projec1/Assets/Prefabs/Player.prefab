@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  jumpForce: 50
+  jumpForce: 45
   jumpSoundEffect: {fileID: 1242759223}
   deathSoundEffect: {fileID: 0}
   coinCollectSoundEffect: {fileID: 753222530}

@@ -129,9 +129,10 @@ public class PlayerScript : MonoBehaviour
     }
 
     void FlipGravity(){
-        Physics2D.gravity = -Physics2D.gravity;
         gravflipped = !gravflipped;
         sr.flipY = gravflipped;
+        GameControllerScript.Instance.FlipGravity();
+        
         }
     
 
@@ -166,8 +167,6 @@ public class PlayerScript : MonoBehaviour
 
     void Die()
     {
-       deathSoundEffect.Play();
-       dead = true;
        GameControllerScript.Instance.Die();
        gameObject.SetActive(false);
     }
